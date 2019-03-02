@@ -1,0 +1,19 @@
+h1 {
+  font-family: calibri;
+  color: dimgray;
+}
+
+body {
+  font-family: calibri;
+  margin: 30px;
+}
+
+input {
+  font-size: 14pt;
+}
+
+canvas {
+  height: 300px;
+  border: 2px solid lightgray;
+}
+
