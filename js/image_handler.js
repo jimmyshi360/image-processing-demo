@@ -1,17 +1,19 @@
 /** Created by Jimmy Shi.
 A simply js file for applying image transformations imported from npm.
 **/
-let imageTransformLibrary = require('micro-image-transformations');
-let img;
-let imageLoader = document.getElementById('image-upload');
+var imageTransformLibrary = require('micro-image-transformations');
+var img;
+var imageLoader = document.getElementById('image-upload');
     imageLoader.addEventListener('change', handleImage, false);
-let cvs = document.getElementById('image-display');
-let ctx = cvs.getContext('2d');
+var cvs = document.getElementById('image-display');
+var ctx = cvs.getContext('2d');
 
+var cvsOrig = document.getElementById('image-display-original');
+var ctxOrig = cvsOrig.getContext('2d');
 
 //handles image uploading
 function handleImage(e){
-    let reader = new FileReader();
+    var reader = new FileReader();
 	//image file has been uploaded
     reader.onload = function(event){
         img = new Image();
@@ -20,6 +22,9 @@ function handleImage(e){
             cvs.width = img.width;
             cvs.height = img.height;
             ctx.drawImage(img,0,0);
+			cvsOrig.width = img.width;
+            cvsOrig.height = img.height;
+			ctxOrig.drawImage(img,0,0);
         }
         img.src = event.target.result;
     }
@@ -28,11 +33,10 @@ function handleImage(e){
 
 global.makeGray= function() {
 	console.log(img.src);
-	let newImage=imageTransformLibrary.grayscale(img);
+	var newImage=imageTransformLibrary.grayscale(img);
 	console.log(newImage.src);
 	newImage.onload = function(){
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
-	    
         ctx.drawImage(newImage,0,0);
 		img=newImage;
     };
@@ -40,11 +44,11 @@ global.makeGray= function() {
 
 global.makeCrop= function() {
 	console.log(img.src);
-	let cropX=parseInt(document.getElementById('cropX').value);
-	let cropY=parseInt(document.getElementById('cropY').value);
-	let cropW=parseInt(document.getElementById('cropW').value);
-	let cropH=parseInt(document.getElementById('cropH').value);
-	let newImage=imageTransformLibrary.crop(img,cropX,cropY,cropW, cropH);
+	var cropX=parseInt(document.getElementById('cropX').value);
+	var cropY=parseInt(document.getElementById('cropY').value);
+	var cropW=parseInt(document.getElementById('cropW').value);
+	var cropH=parseInt(document.getElementById('cropH').value);
+	var newImage=imageTransformLibrary.crop(img,cropX,cropY,cropW, cropH);
 	console.log(newImage.src);
 	newImage.onload = function(){
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
@@ -52,7 +56,6 @@ global.makeCrop= function() {
 		ctx.canvas.height=newImage.height;
         ctx.drawImage(newImage,0,0);
 		
-		img=newImage;
     };
 }
 

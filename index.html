@@ -12,14 +12,17 @@
    <body>
       
       <h1>Convert Image to Grayscale</h1>
+	  <p> Transformed Image<p>
       <canvas id="image-display"></canvas>
+	   <p> Original Image<p>
+	   <canvas id="image-display-original"></canvas>
       <p>
          <input type="file" multiple="false" accept="image/*" id="image-upload" >
       </p>
       <p>
          <input type="button" value="Grayscale!" onclick="makeGray()" >
-      </p>
-         <input type="text" value="cropX" id="cropX"> <input type="text" value="cropY" id="cropY"> <input type="text" value="cropW" id="cropW"><input type="text" value="cropH" id="cropH"><input type="button" value="Crop!" onclick="makeCrop()" >
+      </p>Crop begins at (CropX, CropY) with coordinates starting at the bottom left of the image, just like the cartesian plane.<br><br>
+         CropX <input type="text" value="0" id="cropX"> CropY <input type="text" value="0" id="cropY"> Crop Width <input type="text" value="0" id="cropW"> Crop Height <input type="text" value="0" id="cropH"> <input type="button" value="Crop!" onclick="makeCrop()" >
      
    </body>
 </html>

@@ -1,1 +1,1 @@
-# image-processing-demo
+A barebones demo website for my Instrumental project (micro-image-transformations)

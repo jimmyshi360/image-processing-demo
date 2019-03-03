@@ -1,6 +1,5 @@
 h1 {
   font-family: calibri;
-  color: dimgray;
 }
 
 body {
@@ -13,6 +12,7 @@ input {
 }
 
 canvas {
+	height: 180px;
   border: 2px solid lightgray;
 }
 
