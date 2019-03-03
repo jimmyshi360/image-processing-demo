@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/jshi22/image-processing-demo#readme",
   "dependencies": {
-    "micro-image-transformations": "2.3.0"
+    "micro-image-transformations": "3.0.0"
   }
 }
