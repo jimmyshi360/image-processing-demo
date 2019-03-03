@@ -26,13 +26,34 @@ function handleImage(e){
     reader.readAsDataURL(e.target.files[0]);     
 }
 
-function makeGray() {
+global.makeGray= function() {
+	console.log(img.src);
 	let newImage=imageTransformLibrary.grayscale(img);
+	console.log(newImage.src);
 	newImage.onload = function(){
+		ctx.clearRect(0, 0, cvs.width, cvs.height);
+	    
         ctx.drawImage(newImage,0,0);
+		img=newImage;
     };
 }
 
-module.exports = makeGray;
+global.makeCrop= function() {
+	console.log(img.src);
+	let cropX=parseInt(document.getElementById('cropX').value);
+	let cropY=parseInt(document.getElementById('cropY').value);
+	let cropW=parseInt(document.getElementById('cropW').value);
+	let cropH=parseInt(document.getElementById('cropH').value);
+	let newImage=imageTransformLibrary.crop(img,cropX,cropY,cropW, cropH);
+	console.log(newImage.src);
+	newImage.onload = function(){
+		ctx.clearRect(0, 0, cvs.width, cvs.height);
+		ctx.canvas.width=newImage.width;
+		ctx.canvas.height=newImage.height;
+        ctx.drawImage(newImage,0,0);
+		
+		img=newImage;
+    };
+}
 
-
+module.exports = { makeGray, makeCrop};
